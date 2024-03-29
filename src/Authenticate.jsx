@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Authenticate = ({ token }) => {
+const Authenticate = ({ token, setLoggedIn }) => {
   const API_URL = "https://fsa-jwt-practice.herokuapp.com/authenticate";
 
   const [message, setMessage] = useState("");
@@ -16,8 +16,12 @@ const Authenticate = ({ token }) => {
         },
       });
       const json = await response.json();
+      console.log(json);
       console.log("Message", json.message);
       setMessage(json.message);
+      if(json.success){
+        setLoggedIn(true);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -19,6 +19,7 @@ const GetToken = ({token, setToken}) => {
       const json = await response.json();
       console.log(json);
       setToken(json.token);
+      localStorage.setItem("Token", json.token);
     } catch (error) {
       console.log("Error occured", error);
     }
